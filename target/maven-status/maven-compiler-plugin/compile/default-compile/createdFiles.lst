@@ -1,3 +1,4 @@
 hello\Application.class
 hello\CustomerRepository.class
 hello\Customer.class
+hello\CustomerController.class
