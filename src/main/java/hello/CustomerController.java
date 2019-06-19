@@ -28,13 +28,17 @@ public class CustomerController {
 
 	
 	@GetMapping("/customers/{id}")
-    public ModelAndView listAllCustomers(@PathVariable Long id, Model model) {
-        ModelAndView mav = new ModelAndView("customerDetails");
-        mav.addObject(this.customers.findById(id));
-        return mav;		
-		//Optional<Customer> c = customers.findById(id);
-        //model.addAttribute("c", c);
-        //return "customerDetails";
+    public String listAllCustomers(@PathVariable Long id, Model model) {
+        //ModelAndView mav = new ModelAndView("customerDetails");
+        //mav.addObject(this.customers.findById(id));
+        //return mav;		
+		Optional<Customer> c = customers.findById(id);
+		//if (c.isPresent()) {
+			model.addAttribute("customer", c.get());
+			return "customerDetails";
+		//} else {
+		//	return "redirect:/erro";
+		//}
     }
 	
 }
