@@ -3,8 +3,24 @@
 <head>
     <title>Customer List</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>   
 </head>
 <body>
-    <p th:text="'Hello, ' + ${cs} + '!'" />
+	<h2>Customer List</h2>
+
+	<table>
+    	<thead>
+    	<tr> 
+    	<th> Nome </th> 
+    	<th> Sobrenome </th> 
+    	</tr> 
+    	</thead>
+    	<tbody>
+    		<tr th:each="c : ${cs}"> 
+    		<td th:text="${c.firstName}"> Primeiro nome </td>
+    		<td th:text="${c.lastName}"> Último nome </td>
+    		</tr>
+    	</tbody>
+	</table>
 </body>
 </html>

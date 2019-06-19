@@ -8,11 +8,16 @@ import java.util.*;
 
 @Controller
 public class CustomerController {
+	private final CustomerRepository customers;
+	
+    public CustomerController(CustomerRepository customers) {
+		super();
+		this.customers = customers;
+	}
 
-    @GetMapping("/customers")
+	@GetMapping("/customers")
     public String listAllCustomers(Model model) {
-		List<Customer> lista = new ArrayList<Customer>();
-		lista.add(new Customer("João", "Silva"));
+		List<Customer> lista = customers.findAll();
         model.addAttribute("cs", lista);
         return "customersList";
     }
