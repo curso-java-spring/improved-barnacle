@@ -1,9 +1,13 @@
 package hello;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -22,4 +26,15 @@ public class CustomerController {
         return "customersList";
     }
 
+	
+	@GetMapping("/customers/{id}")
+    public ModelAndView listAllCustomers(@PathVariable Long id, Model model) {
+        ModelAndView mav = new ModelAndView("customerDetails");
+        mav.addObject(this.customers.findById(id));
+        return mav;		
+		//Optional<Customer> c = customers.findById(id);
+        //model.addAttribute("c", c);
+        //return "customerDetails";
+    }
+	
 }
